@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ede2a0c199c94593bdfac1dd64496d65" Name="Diagram1">
+        <EntityTypeShape EntityType="dbEmployeeModel.TableDoctors1081649" Width="1.5" PointX="3.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEmployeeModel.TablePatients1081649" Width="1.5" PointX="6.375" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="dbEmployeeModel.FK__TablePati__負責醫生編__5C0D8F7B" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dbEmployeeModel.TableToors1081649" Width="1.5" PointX="0.625" PointY="1" />
+        <AssociationConnector Association="dbEmployeeModel.FK__TableToor__負責醫生編__4AADF94F" />
+        <EntityTypeShape EntityType="dbEmployeeModel.TableToorman1081649" Width="1.5" PointX="3.75" PointY="3.25" />
+        <AssociationConnector Association="dbEmployeeModel.FK__TableToor__負責醫生編__7C4554E3" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

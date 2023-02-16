@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbEmployeeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TableDoctors1081649">
+          <Key>
+            <PropertyRef Name="負責醫生編號" />
+          </Key>
+          <Property Name="負責醫生編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="醫生姓名" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TablePatients1081649">
+          <Key>
+            <PropertyRef Name="看診編號" />
+          </Key>
+          <Property Name="看診編號" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="身分證字號" Type="nvarchar" MaxLength="10" />
+          <Property Name="姓名" Type="nvarchar" MaxLength="30" />
+          <Property Name="看診原因" Type="nvarchar" MaxLength="50" />
+          <Property Name="看診日期" Type="date" />
+          <Property Name="負責醫生編號" Type="int" />
+        </EntityType>
+        <EntityType Name="TableToorman1081649">
+          <Key>
+            <PropertyRef Name="員工編號" />
+          </Key>
+          <Property Name="員工編號" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="姓名" Type="nvarchar" MaxLength="50" />
+          <Property Name="月考績分數" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="負責醫生編號" Type="int" />
+          <Property Name="雇用日期" Type="date" />
+        </EntityType>
+        <EntityType Name="TableToors1081649">
+          <Key>
+            <PropertyRef Name="用品編號" />
+          </Key>
+          <Property Name="用品編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="用品" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="供應商代號" Type="int" />
+          <Property Name="負責醫生編號" Type="int" />
+          <Property Name="單位數量" Type="nvarchar" MaxLength="20" />
+          <Property Name="價格" Type="money" />
+          <Property Name="庫存量" Type="smallint" />
+          <Property Name="已訂購量" Type="smallint" />
+          <Property Name="預計能使用天數" Type="smallint" />
+          <Property Name="報廢" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__TablePati__負責醫生編__5C0D8F7B">
+          <End Role="TableDoctors1081649" Type="Self.TableDoctors1081649" Multiplicity="0..1" />
+          <End Role="TablePatients1081649" Type="Self.TablePatients1081649" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableDoctors1081649">
+              <PropertyRef Name="負責醫生編號" />
+            </Principal>
+            <Dependent Role="TablePatients1081649">
+              <PropertyRef Name="負責醫生編號" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TableToor__負責醫生編__4AADF94F">
+          <End Role="TableDoctors1081649" Type="Self.TableDoctors1081649" Multiplicity="0..1" />
+          <End Role="TableToors1081649" Type="Self.TableToors1081649" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableDoctors1081649">
+              <PropertyRef Name="負責醫生編號" />
+            </Principal>
+            <Dependent Role="TableToors1081649">
+              <PropertyRef Name="負責醫生編號" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TableToor__負責醫生編__7C4554E3">
+          <End Role="TableDoctors1081649" Type="Self.TableDoctors1081649" Multiplicity="0..1" />
+          <End Role="TableToorman1081649" Type="Self.TableToorman1081649" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableDoctors1081649">
+              <PropertyRef Name="負責醫生編號" />
+            </Principal>
+            <Dependent Role="TableToorman1081649">
+              <PropertyRef Name="負責醫生編號" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbEmployeeModelStoreContainer">
+          <EntitySet Name="TableDoctors1081649" EntityType="Self.TableDoctors1081649" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TablePatients1081649" EntityType="Self.TablePatients1081649" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TableToorman1081649" EntityType="Self.TableToorman1081649" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TableToors1081649" EntityType="Self.TableToors1081649" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TablePati__負責醫生編__5C0D8F7B" Association="Self.FK__TablePati__負責醫生編__5C0D8F7B">
+            <End Role="TableDoctors1081649" EntitySet="TableDoctors1081649" />
+            <End Role="TablePatients1081649" EntitySet="TablePatients1081649" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TableToor__負責醫生編__4AADF94F" Association="Self.FK__TableToor__負責醫生編__4AADF94F">
+            <End Role="TableDoctors1081649" EntitySet="TableDoctors1081649" />
+            <End Role="TableToors1081649" EntitySet="TableToors1081649" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TableToor__負責醫生編__7C4554E3" Association="Self.FK__TableToor__負責醫生編__7C4554E3">
+            <End Role="TableDoctors1081649" EntitySet="TableDoctors1081649" />
+            <End Role="TableToorman1081649" EntitySet="TableToorman1081649" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbEmployeeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TableDoctors1081649">
+          <Key>
+            <PropertyRef Name="負責醫生編號" />
+          </Key>
+          <Property Name="負責醫生編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="醫生姓名" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TablePatients1081649" Relationship="Self.FK__TablePati__負責醫生編__5C0D8F7B" FromRole="TableDoctors1081649" ToRole="TablePatients1081649" />
+          <NavigationProperty Name="TableToors1081649" Relationship="dbEmployeeModel.FK__TableToor__負責醫生編__4AADF94F" FromRole="TableDoctors1081649" ToRole="TableToors1081649" />
+          <NavigationProperty Name="TableToorman1081649" Relationship="dbEmployeeModel.FK__TableToor__負責醫生編__7C4554E3" FromRole="TableDoctors1081649" ToRole="TableToorman1081649" />
+        </EntityType>
+        <EntityType Name="TablePatients1081649">
+          <Key>
+            <PropertyRef Name="看診編號" />
+          </Key>
+          <Property Name="看診編號" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="身分證字號" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="姓名" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="看診原因" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="看診日期" Type="DateTime" Precision="0" />
+          <Property Name="負責醫生編號" Type="Int32" />
+          <NavigationProperty Name="TableDoctors1081649" Relationship="Self.FK__TablePati__負責醫生編__5C0D8F7B" FromRole="TablePatients1081649" ToRole="TableDoctors1081649" />
+        </EntityType>
+        <Association Name="FK__TablePati__負責醫生編__5C0D8F7B">
+          <End Role="TableDoctors1081649" Type="Self.TableDoctors1081649" Multiplicity="0..1" />
+          <End Role="TablePatients1081649" Type="Self.TablePatients1081649" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableDoctors1081649">
+              <PropertyRef Name="負責醫生編號" />
+            </Principal>
+            <Dependent Role="TablePatients1081649">
+              <PropertyRef Name="負責醫生編號" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbEmployeeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TableDoctors1081649" EntityType="Self.TableDoctors1081649" />
+          <EntitySet Name="TablePatients1081649" EntityType="Self.TablePatients1081649" />
+          <AssociationSet Name="FK__TablePati__負責醫生編__5C0D8F7B" Association="Self.FK__TablePati__負責醫生編__5C0D8F7B">
+            <End Role="TableDoctors1081649" EntitySet="TableDoctors1081649" />
+            <End Role="TablePatients1081649" EntitySet="TablePatients1081649" />
+          </AssociationSet>
+          <EntitySet Name="TableToors1081649" EntityType="dbEmployeeModel.TableToors1081649" />
+          <AssociationSet Name="FK__TableToor__負責醫生編__4AADF94F" Association="dbEmployeeModel.FK__TableToor__負責醫生編__4AADF94F">
+            <End Role="TableDoctors1081649" EntitySet="TableDoctors1081649" />
+            <End Role="TableToors1081649" EntitySet="TableToors1081649" />
+          </AssociationSet>
+          <EntitySet Name="TableToorman1081649" EntityType="dbEmployeeModel.TableToorman1081649" />
+          <AssociationSet Name="FK__TableToor__負責醫生編__7C4554E3" Association="dbEmployeeModel.FK__TableToor__負責醫生編__7C4554E3">
+            <End Role="TableDoctors1081649" EntitySet="TableDoctors1081649" />
+            <End Role="TableToorman1081649" EntitySet="TableToorman1081649" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TableToors1081649">
+          <Key>
+            <PropertyRef Name="用品編號" />
+          </Key>
+          <Property Name="用品編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="用品" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="供應商代號" Type="Int32" />
+          <Property Name="負責醫生編號" Type="Int32" />
+          <Property Name="單位數量" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="價格" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="庫存量" Type="Int16" />
+          <Property Name="已訂購量" Type="Int16" />
+          <Property Name="預計能使用天數" Type="Int16" />
+          <Property Name="報廢" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TableDoctors1081649" Relationship="dbEmployeeModel.FK__TableToor__負責醫生編__4AADF94F" FromRole="TableToors1081649" ToRole="TableDoctors1081649" />
+        </EntityType>
+        <Association Name="FK__TableToor__負責醫生編__4AADF94F">
+          <End Type="dbEmployeeModel.TableDoctors1081649" Role="TableDoctors1081649" Multiplicity="0..1" />
+          <End Type="dbEmployeeModel.TableToors1081649" Role="TableToors1081649" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableDoctors1081649">
+              <PropertyRef Name="負責醫生編號" />
+            </Principal>
+            <Dependent Role="TableToors1081649">
+              <PropertyRef Name="負責醫生編號" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TableToorman1081649">
+          <Key>
+            <PropertyRef Name="員工編號" />
+          </Key>
+          <Property Name="員工編號" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="姓名" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="月考績分數" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="負責醫生編號" Type="Int32" />
+          <Property Name="雇用日期" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TableDoctors1081649" Relationship="dbEmployeeModel.FK__TableToor__負責醫生編__7C4554E3" FromRole="TableToorman1081649" ToRole="TableDoctors1081649" />
+        </EntityType>
+        <Association Name="FK__TableToor__負責醫生編__7C4554E3">
+          <End Type="dbEmployeeModel.TableDoctors1081649" Role="TableDoctors1081649" Multiplicity="0..1" />
+          <End Type="dbEmployeeModel.TableToorman1081649" Role="TableToorman1081649" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TableDoctors1081649">
+              <PropertyRef Name="負責醫生編號" />
+            </Principal>
+            <Dependent Role="TableToorman1081649">
+              <PropertyRef Name="負責醫生編號" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbEmployeeModelStoreContainer" CdmEntityContainer="dbEmployeeEntities">
+          <EntitySetMapping Name="TableDoctors1081649">
+            <EntityTypeMapping TypeName="dbEmployeeModel.TableDoctors1081649">
+              <MappingFragment StoreEntitySet="TableDoctors1081649">
+                <ScalarProperty Name="負責醫生編號" ColumnName="負責醫生編號" />
+                <ScalarProperty Name="醫生姓名" ColumnName="醫生姓名" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TablePatients1081649">
+            <EntityTypeMapping TypeName="dbEmployeeModel.TablePatients1081649">
+              <MappingFragment StoreEntitySet="TablePatients1081649">
+                <ScalarProperty Name="看診編號" ColumnName="看診編號" />
+                <ScalarProperty Name="身分證字號" ColumnName="身分證字號" />
+                <ScalarProperty Name="姓名" ColumnName="姓名" />
+                <ScalarProperty Name="看診原因" ColumnName="看診原因" />
+                <ScalarProperty Name="看診日期" ColumnName="看診日期" />
+                <ScalarProperty Name="負責醫生編號" ColumnName="負責醫生編號" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TableToors1081649">
+            <EntityTypeMapping TypeName="dbEmployeeModel.TableToors1081649">
+              <MappingFragment StoreEntitySet="TableToors1081649">
+                <ScalarProperty Name="報廢" ColumnName="報廢" />
+                <ScalarProperty Name="預計能使用天數" ColumnName="預計能使用天數" />
+                <ScalarProperty Name="已訂購量" ColumnName="已訂購量" />
+                <ScalarProperty Name="庫存量" ColumnName="庫存量" />
+                <ScalarProperty Name="價格" ColumnName="價格" />
+                <ScalarProperty Name="單位數量" ColumnName="單位數量" />
+                <ScalarProperty Name="負責醫生編號" ColumnName="負責醫生編號" />
+                <ScalarProperty Name="供應商代號" ColumnName="供應商代號" />
+                <ScalarProperty Name="用品" ColumnName="用品" />
+                <ScalarProperty Name="用品編號" ColumnName="用品編號" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TableToorman1081649">
+            <EntityTypeMapping TypeName="dbEmployeeModel.TableToorman1081649">
+              <MappingFragment StoreEntitySet="TableToorman1081649">
+                <ScalarProperty Name="雇用日期" ColumnName="雇用日期" />
+                <ScalarProperty Name="負責醫生編號" ColumnName="負責醫生編號" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="月考績分數" ColumnName="月考績分數" />
+                <ScalarProperty Name="姓名" ColumnName="姓名" />
+                <ScalarProperty Name="員工編號" ColumnName="員工編號" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbEmployeeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TableDoctors1081649">
+    <Key>
+      <PropertyRef Name="負責醫生編號" />
+    </Key>
+    <Property Name="負責醫生編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="醫生姓名" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TablePatients1081649">
+    <Key>
+      <PropertyRef Name="看診編號" />
+    </Key>
+    <Property Name="看診編號" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="身分證字號" Type="nvarchar" MaxLength="10" />
+    <Property Name="姓名" Type="nvarchar" MaxLength="30" />
+    <Property Name="看診原因" Type="nvarchar" MaxLength="50" />
+    <Property Name="看診日期" Type="date" />
+    <Property Name="負責醫生編號" Type="int" />
+  </EntityType>
+  <EntityType Name="TableToorman1081649">
+    <Key>
+      <PropertyRef Name="員工編號" />
+    </Key>
+    <Property Name="員工編號" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="姓名" Type="nvarchar" MaxLength="50" />
+    <Property Name="月考績分數" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+    <Property Name="負責醫生編號" Type="int" />
+    <Property Name="雇用日期" Type="date" />
+  </EntityType>
+  <EntityType Name="TableToors1081649">
+    <Key>
+      <PropertyRef Name="用品編號" />
+    </Key>
+    <Property Name="用品編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="用品" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="供應商代號" Type="int" />
+    <Property Name="負責醫生編號" Type="int" />
+    <Property Name="單位數量" Type="nvarchar" MaxLength="20" />
+    <Property Name="價格" Type="money" />
+    <Property Name="庫存量" Type="smallint" />
+    <Property Name="已訂購量" Type="smallint" />
+    <Property Name="預計能使用天數" Type="smallint" />
+    <Property Name="報廢" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__TablePati__負責醫生編__5C0D8F7B">
+    <End Role="TableDoctors1081649" Type="Self.TableDoctors1081649" Multiplicity="0..1" />
+    <End Role="TablePatients1081649" Type="Self.TablePatients1081649" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TableDoctors1081649">
+        <PropertyRef Name="負責醫生編號" />
+      </Principal>
+      <Dependent Role="TablePatients1081649">
+        <PropertyRef Name="負責醫生編號" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TableToor__負責醫生編__4AADF94F">
+    <End Role="TableDoctors1081649" Type="Self.TableDoctors1081649" Multiplicity="0..1" />
+    <End Role="TableToors1081649" Type="Self.TableToors1081649" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TableDoctors1081649">
+        <PropertyRef Name="負責醫生編號" />
+      </Principal>
+      <Dependent Role="TableToors1081649">
+        <PropertyRef Name="負責醫生編號" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TableToor__負責醫生編__7C4554E3">
+    <End Role="TableDoctors1081649" Type="Self.TableDoctors1081649" Multiplicity="0..1" />
+    <End Role="TableToorman1081649" Type="Self.TableToorman1081649" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TableDoctors1081649">
+        <PropertyRef Name="負責醫生編號" />
+      </Principal>
+      <Dependent Role="TableToorman1081649">
+        <PropertyRef Name="負責醫生編號" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbEmployeeModelStoreContainer">
+    <EntitySet Name="TableDoctors1081649" EntityType="Self.TableDoctors1081649" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TablePatients1081649" EntityType="Self.TablePatients1081649" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableToorman1081649" EntityType="Self.TableToorman1081649" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableToors1081649" EntityType="Self.TableToors1081649" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__TablePati__負責醫生編__5C0D8F7B" Association="Self.FK__TablePati__負責醫生編__5C0D8F7B">
+      <End Role="TableDoctors1081649" EntitySet="TableDoctors1081649" />
+      <End Role="TablePatients1081649" EntitySet="TablePatients1081649" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TableToor__負責醫生編__4AADF94F" Association="Self.FK__TableToor__負責醫生編__4AADF94F">
+      <End Role="TableDoctors1081649" EntitySet="TableDoctors1081649" />
+      <End Role="TableToors1081649" EntitySet="TableToors1081649" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TableToor__負責醫生編__7C4554E3" Association="Self.FK__TableToor__負責醫生編__7C4554E3">
+      <End Role="TableDoctors1081649" EntitySet="TableDoctors1081649" />
+      <End Role="TableToorman1081649" EntitySet="TableToorman1081649" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

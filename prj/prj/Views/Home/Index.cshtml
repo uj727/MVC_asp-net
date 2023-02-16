@@ -1,0 +1,61 @@
+﻿@model prj.Models.CVMDepEmp
+
+@{
+	ViewBag.Title = "";
+}
+
+<h2>@ViewBag.DepName</h2>
+
+<div class="alert alert-danger">
+	@Html.ActionLink("新增", "Create")
+</div>
+<div class="row">
+	<div class="col-md-3">
+		@foreach (var item in Model.doctor)
+		{
+			<p>
+				@Html.ActionLink(item.醫生姓名, "Index", new { depId = item.負責醫生編號 })
+			</p>
+			String s = item.負責醫生編號.ToString() + ".png";
+			<p><img src="~/pic/@s" /></p>
+		}
+	</div>
+
+	<div class="col-md-9">
+		<table class="table">
+			<tr>
+				<td>姓名</td>
+				<td>身分證字號</td>
+				<td>看診原因</td>
+				<td>看診日期</td>
+				<td>看診編號</td>
+				<td>負責醫生編號</td>
+			</tr>
+			@foreach (var item in Model.patient)
+			{
+				<tr>
+
+					<td>@item.姓名</td>
+					<td>@item.身分證字號</td>
+					<td>@item.看診原因</td>
+					<td>@item.看診日期.Value.ToShortDateString()</td>
+					<td>@item.看診編號</td>
+					<td>@item.負責醫生編號</td>
+
+					<td>
+						@Html.ActionLink("刪除", "Deletepat",
+					   
+							new { pId = item.看診編號 },
+							
+							new
+							{
+								onclick = "return confirm('確定刪除嗎？');",
+								@class = "btn btn-alert"
+							})
+					</td>
+				</tr>
+			}
+		</table>
+	</div>
+</div>
+

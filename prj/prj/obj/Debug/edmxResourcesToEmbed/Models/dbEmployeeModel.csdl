@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbEmployeeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TableDoctors1081649">
+    <Key>
+      <PropertyRef Name="負責醫生編號" />
+    </Key>
+    <Property Name="負責醫生編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="醫生姓名" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TablePatients1081649" Relationship="Self.FK__TablePati__負責醫生編__5C0D8F7B" FromRole="TableDoctors1081649" ToRole="TablePatients1081649" />
+    <NavigationProperty Name="TableToors1081649" Relationship="dbEmployeeModel.FK__TableToor__負責醫生編__4AADF94F" FromRole="TableDoctors1081649" ToRole="TableToors1081649" />
+    <NavigationProperty Name="TableToorman1081649" Relationship="dbEmployeeModel.FK__TableToor__負責醫生編__7C4554E3" FromRole="TableDoctors1081649" ToRole="TableToorman1081649" />
+  </EntityType>
+  <EntityType Name="TablePatients1081649">
+    <Key>
+      <PropertyRef Name="看診編號" />
+    </Key>
+    <Property Name="看診編號" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="身分證字號" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="姓名" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="看診原因" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="看診日期" Type="DateTime" Precision="0" />
+    <Property Name="負責醫生編號" Type="Int32" />
+    <NavigationProperty Name="TableDoctors1081649" Relationship="Self.FK__TablePati__負責醫生編__5C0D8F7B" FromRole="TablePatients1081649" ToRole="TableDoctors1081649" />
+  </EntityType>
+  <Association Name="FK__TablePati__負責醫生編__5C0D8F7B">
+    <End Role="TableDoctors1081649" Type="Self.TableDoctors1081649" Multiplicity="0..1" />
+    <End Role="TablePatients1081649" Type="Self.TablePatients1081649" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TableDoctors1081649">
+        <PropertyRef Name="負責醫生編號" />
+      </Principal>
+      <Dependent Role="TablePatients1081649">
+        <PropertyRef Name="負責醫生編號" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbEmployeeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TableDoctors1081649" EntityType="Self.TableDoctors1081649" />
+    <EntitySet Name="TablePatients1081649" EntityType="Self.TablePatients1081649" />
+    <AssociationSet Name="FK__TablePati__負責醫生編__5C0D8F7B" Association="Self.FK__TablePati__負責醫生編__5C0D8F7B">
+      <End Role="TableDoctors1081649" EntitySet="TableDoctors1081649" />
+      <End Role="TablePatients1081649" EntitySet="TablePatients1081649" />
+    </AssociationSet>
+    <EntitySet Name="TableToors1081649" EntityType="dbEmployeeModel.TableToors1081649" />
+    <AssociationSet Name="FK__TableToor__負責醫生編__4AADF94F" Association="dbEmployeeModel.FK__TableToor__負責醫生編__4AADF94F">
+      <End Role="TableDoctors1081649" EntitySet="TableDoctors1081649" />
+      <End Role="TableToors1081649" EntitySet="TableToors1081649" />
+    </AssociationSet>
+    <EntitySet Name="TableToorman1081649" EntityType="dbEmployeeModel.TableToorman1081649" />
+    <AssociationSet Name="FK__TableToor__負責醫生編__7C4554E3" Association="dbEmployeeModel.FK__TableToor__負責醫生編__7C4554E3">
+      <End Role="TableDoctors1081649" EntitySet="TableDoctors1081649" />
+      <End Role="TableToorman1081649" EntitySet="TableToorman1081649" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TableToors1081649">
+    <Key>
+      <PropertyRef Name="用品編號" />
+    </Key>
+    <Property Name="用品編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="用品" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="供應商代號" Type="Int32" />
+    <Property Name="負責醫生編號" Type="Int32" />
+    <Property Name="單位數量" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="價格" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="庫存量" Type="Int16" />
+    <Property Name="已訂購量" Type="Int16" />
+    <Property Name="預計能使用天數" Type="Int16" />
+    <Property Name="報廢" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TableDoctors1081649" Relationship="dbEmployeeModel.FK__TableToor__負責醫生編__4AADF94F" FromRole="TableToors1081649" ToRole="TableDoctors1081649" />
+  </EntityType>
+  <Association Name="FK__TableToor__負責醫生編__4AADF94F">
+    <End Type="dbEmployeeModel.TableDoctors1081649" Role="TableDoctors1081649" Multiplicity="0..1" />
+    <End Type="dbEmployeeModel.TableToors1081649" Role="TableToors1081649" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TableDoctors1081649">
+        <PropertyRef Name="負責醫生編號" />
+      </Principal>
+      <Dependent Role="TableToors1081649">
+        <PropertyRef Name="負責醫生編號" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TableToorman1081649">
+    <Key>
+      <PropertyRef Name="員工編號" />
+    </Key>
+    <Property Name="員工編號" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="姓名" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="月考績分數" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="負責醫生編號" Type="Int32" />
+    <Property Name="雇用日期" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="TableDoctors1081649" Relationship="dbEmployeeModel.FK__TableToor__負責醫生編__7C4554E3" FromRole="TableToorman1081649" ToRole="TableDoctors1081649" />
+  </EntityType>
+  <Association Name="FK__TableToor__負責醫生編__7C4554E3">
+    <End Type="dbEmployeeModel.TableDoctors1081649" Role="TableDoctors1081649" Multiplicity="0..1" />
+    <End Type="dbEmployeeModel.TableToorman1081649" Role="TableToorman1081649" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TableDoctors1081649">
+        <PropertyRef Name="負責醫生編號" />
+      </Principal>
+      <Dependent Role="TableToorman1081649">
+        <PropertyRef Name="負責醫生編號" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

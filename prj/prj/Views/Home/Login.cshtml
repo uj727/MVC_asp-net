@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+<form method="post" action="@Url.Action("Login")">
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">會員登入</div>
+		<div class="panel-body">
+			<p>帳號密碼都是1081649</p>
+			<p>
+				帳號:<input type="text" class="form-control" name="uid" required />
+			</p>
+			<p>
+				密碼:<input type="text" class="form-control" name="pas" required />
+			</p>
+			<p>
+				<input type="submit" class="btn btn-primary" value="確認" required />
+			</p>
+			<p class=" text-danger">@ViewBag.err </p>
+		</div>
+	</div>
+</form>
+

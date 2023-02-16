@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbEmployeeModelStoreContainer" CdmEntityContainer="dbEmployeeEntities">
+    <EntitySetMapping Name="TableDoctors1081649">
+      <EntityTypeMapping TypeName="dbEmployeeModel.TableDoctors1081649">
+        <MappingFragment StoreEntitySet="TableDoctors1081649">
+          <ScalarProperty Name="負責醫生編號" ColumnName="負責醫生編號" />
+          <ScalarProperty Name="醫生姓名" ColumnName="醫生姓名" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TablePatients1081649">
+      <EntityTypeMapping TypeName="dbEmployeeModel.TablePatients1081649">
+        <MappingFragment StoreEntitySet="TablePatients1081649">
+          <ScalarProperty Name="看診編號" ColumnName="看診編號" />
+          <ScalarProperty Name="身分證字號" ColumnName="身分證字號" />
+          <ScalarProperty Name="姓名" ColumnName="姓名" />
+          <ScalarProperty Name="看診原因" ColumnName="看診原因" />
+          <ScalarProperty Name="看診日期" ColumnName="看診日期" />
+          <ScalarProperty Name="負責醫生編號" ColumnName="負責醫生編號" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableToors1081649">
+      <EntityTypeMapping TypeName="dbEmployeeModel.TableToors1081649">
+        <MappingFragment StoreEntitySet="TableToors1081649">
+          <ScalarProperty Name="報廢" ColumnName="報廢" />
+          <ScalarProperty Name="預計能使用天數" ColumnName="預計能使用天數" />
+          <ScalarProperty Name="已訂購量" ColumnName="已訂購量" />
+          <ScalarProperty Name="庫存量" ColumnName="庫存量" />
+          <ScalarProperty Name="價格" ColumnName="價格" />
+          <ScalarProperty Name="單位數量" ColumnName="單位數量" />
+          <ScalarProperty Name="負責醫生編號" ColumnName="負責醫生編號" />
+          <ScalarProperty Name="供應商代號" ColumnName="供應商代號" />
+          <ScalarProperty Name="用品" ColumnName="用品" />
+          <ScalarProperty Name="用品編號" ColumnName="用品編號" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableToorman1081649">
+      <EntityTypeMapping TypeName="dbEmployeeModel.TableToorman1081649">
+        <MappingFragment StoreEntitySet="TableToorman1081649">
+          <ScalarProperty Name="雇用日期" ColumnName="雇用日期" />
+          <ScalarProperty Name="負責醫生編號" ColumnName="負責醫生編號" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="月考績分數" ColumnName="月考績分數" />
+          <ScalarProperty Name="姓名" ColumnName="姓名" />
+          <ScalarProperty Name="員工編號" ColumnName="員工編號" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
